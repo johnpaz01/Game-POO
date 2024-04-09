@@ -6,9 +6,11 @@
 package MainFrame;
 
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import javax.swing.ImageIcon;
 
 
 /**
@@ -16,7 +18,7 @@ import java.awt.event.MouseListener;
  * @author alkaleus
  */
 public class TelaPrincipal extends javax.swing.JFrame implements MouseListener{
-    
+private ImageIcon imageIcon;    
     
     /**
      * Creates new form TelaPrincipal
@@ -27,7 +29,12 @@ public class TelaPrincipal extends javax.swing.JFrame implements MouseListener{
         jPanel1.setBounds(0, 0, 320, 242);
         jPanel1.setBackground(Color.WHITE);  
         //jPanel1.setOpaque(true);
-        
+        java.net.URL imgURL = getClass().getResource("/home/alkaleus/Game-POO/image.jpg");
+    if (imgURL != null) {
+        imageIcon = new ImageIcon(imgURL);
+    } else {
+        System.err.println("Could not find image: /home/alkaleus/Game-POO/image.jpg");
+    }
         //this.add(jPanel1);
     }
 
@@ -40,16 +47,30 @@ public class TelaPrincipal extends javax.swing.JFrame implements MouseListener{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jSplitPane1 = new javax.swing.JSplitPane();
+        jDesktopPane1 = new javax.swing.JDesktopPane();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         jPanel2 = new javax.swing.JPanel();
 
+        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
+        jDesktopPane1.setLayout(jDesktopPane1Layout);
+        jDesktopPane1Layout.setHorizontalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jDesktopPane1Layout.setVerticalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(850, 600));
+        setPreferredSize(new java.awt.Dimension(950, 800));
 
         jButton1.setText("jButton1");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -62,15 +83,19 @@ public class TelaPrincipal extends javax.swing.JFrame implements MouseListener{
 
         jButton3.setText("jButton3");
 
+        jLabel1.setText("jLabel1");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 320, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 242, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
         );
 
         jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
@@ -175,46 +200,57 @@ public class TelaPrincipal extends javax.swing.JFrame implements MouseListener{
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSplitPane jSplitPane1;
     // End of variables declaration//GEN-END:variables
 
   
     @Override
     public void mouseClicked(MouseEvent e) {
         //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-        //try {
+        try {
             Point position  = e.getPoint();
-           int x = position.x;
-           int y = position.y;
-            System.out.println("click" + x + "," + y);
-        //} 
-        //catch (Exception ex) {
-           // System.out.println("error occurred" + ex.getMessage());
-        //}
+            int x = position.x;
+            int y = position.y;
+
+           System.out.println("click" + x + "," + y);
+        } catch (Exception ex) {
+            System.out.println("error occurred" + ex.getMessage());
+        }
     
     }
    
-
+    private void openInnerMap(String locationName) {
+        
+    }
+    
+// pode ignorar esse resto aqui    \ (°o°) /  ~ uhhh ~
     @Override
     public void mousePressed(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       // throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       // System.out.println("mouse pressed");
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        //System.out.println("mouse released");
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       // throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        //System.out.println("mouse entered");
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        //System.out.println("mouse exited");
     }
 }
