@@ -8,17 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BuscarNome {
+    
 
-    private String pasta = "C:/Users/johnp/OneDrive/Desktop/GameInforamtion";
-    private String nomeArquivo;
-
-    public BuscarNome() {
-        this.nomeArquivo = "todosnomes.txt";
-    }
+    private String caminhoArquivo = FileUtils.caminhoArquivo;
 
     public List<String> buscarNome(String nomeProcurado) {
     List<String> nomesEncontrados = new ArrayList<>();
-    String caminhoArquivo = pasta + "/" + nomeArquivo;
+    String caminhoArquivo = this.caminhoArquivo;
 
     try {
         File arquivo = new File(caminhoArquivo);
@@ -26,7 +22,7 @@ public class BuscarNome {
         String linha;
 
         while ((linha = leitor.readLine()) != null) {
-            if (linha.contains(nomeProcurado)) { // Alterado aqui
+            if (linha.contains(nomeProcurado)) { 
                 nomesEncontrados.add(linha);
             }
         }

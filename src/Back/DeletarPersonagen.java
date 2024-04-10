@@ -11,7 +11,7 @@ public class DeletarPersonagen {
     private String posicaoAtual;
     private String inventario;
     private String nomePersonagem;
-    private String caminhoDiretorio;
+    private String caminhoDiretorio = FileUtils.caminhoPasta;
     private String idString;
 
     public DeletarPersonagen(int id, String name) {
@@ -21,7 +21,6 @@ public class DeletarPersonagen {
         this.posicaoAtual = idString + "_position.txt";
         this.inventario = idString + "_inventory.txt";
         this.nomePersonagem = name;
-        this.caminhoDiretorio = "C:/Users/johnp/OneDrive/Desktop/GameInforamtion/";
     }
 
     public void deletarSaves(String caminho) {

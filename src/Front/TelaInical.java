@@ -1,11 +1,13 @@
 package Front;
 
+import Back.FileUtils;
 import java.awt.Color;
 
 public class TelaInical extends javax.swing.JFrame {
 
     public TelaInical() {
         initComponents();
+        FileUtils.criarPastaEArquivo();
         caregarjogo.setBackground(Color.WHITE);
         newgame.setBackground(Color.WHITE);
         DeletSave.setBackground(Color.WHITE);

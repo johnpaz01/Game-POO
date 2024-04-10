@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class LoadGame {
 
     private String pasta;
-    String caminho = "C:/Users/johnp/OneDrive/Desktop/GameInforamtion"; 
+    String caminho = FileUtils.caminhoPasta; 
 
  
  
@@ -61,8 +61,10 @@ public class LoadGame {
     
 
     private String carregarArquivos(String nomeArquivo) {
-        String caminhoArquivo = pasta + "/" + nomeArquivo;
+        String caminhoArquivo = pasta + File.separator + nomeArquivo;
         StringBuilder conteudo = new StringBuilder();
+        System.out.println("===============");
+        System.out.println(caminhoArquivo);
 
         try {
             File arquivo = new File(caminhoArquivo);
