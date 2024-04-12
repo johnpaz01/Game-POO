@@ -3,7 +3,9 @@ package Front;
 import Back.BuscarNome;
 import Back.LoadGame;
 import Back.DeletarPersonagen;
+import Back.GuardaDadosGameplay;
 import Back.RetornaID;
+import Front.TelaGame.TelaA01;
 import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
@@ -18,10 +20,10 @@ public class TelaCarregamento extends javax.swing.JFrame {
     public RetornaID Rid = new RetornaID();
     public LoadGame Lgame =new LoadGame();
     private int id = 0;
-    private String nomePersonagem;
-    private String ultimoSave;
-    private String posicaoAtual;
-    private ArrayList<String> InventaioCarregado = new ArrayList<>();
+    private  String nomePersonagem;
+    private  String ultimoSave;
+    private  String posicaoAtual;
+    private  ArrayList<String> InventaioCarregado = new ArrayList<>();
     
     
     public TelaCarregamento(int op) {
@@ -186,10 +188,12 @@ public class TelaCarregamento extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void CarregarPersonagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CarregarPersonagemActionPerformed
-       
-    //=========================    
-    //chamar tela de acordo com position id        
-    //=========================
+    GuardaDadosGameplay gd = new GuardaDadosGameplay(nomePersonagem, ultimoSave, 
+            posicaoAtual,InventaioCarregado,id);
+    TelaA01 tlA01 = new TelaA01();
+    tlA01.setVisible(true);
+    dispose();
+        
     }//GEN-LAST:event_CarregarPersonagemActionPerformed
 
     private void VoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VoltarActionPerformed

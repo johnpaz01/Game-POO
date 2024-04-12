@@ -1,11 +1,8 @@
 package Back;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import Front.TelaCriarSave;
+import java.io.*;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -15,7 +12,8 @@ import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 
 public class CriarNovoPersonagem {
-
+    
+    private Front.TelaCriarSave tl = new TelaCriarSave();
     private String nome;
     private String position;
     private ArrayList<String> inventory = new ArrayList<>();
@@ -28,13 +26,17 @@ public class CriarNovoPersonagem {
     e a posição inicial, logo criando um novo personagem
     */
     
-    public CriarNovoPersonagem(String name) {
-    this.nome = name.toLowerCase();
-    this.position = "a01"; 
+    public CriarNovoPersonagem(int op) {
+     this.nome = tl.RetornaNome();
+    this.position = "a1"; 
     Date dataAtual = new Date();
     SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
     this.data = formatoData.format(dataAtual); 
-    geraID(); 
+    if(op==1){
+        geraID();
+    }else{
+       this.id = GuardaDadosGameplay.id;
+    }
 }
 
     //aqui eu pego ops itens que o usuário escolheu para salvar no array list inventory
@@ -109,7 +111,8 @@ public class CriarNovoPersonagem {
      
      
      
-     public void salvarInformacoesInventory() {
+     public void salvarInformacoesInventory(ArrayList<String> inventory) {
+         System.out.println("Tentando salvar inventario agora...");
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(caminhoPasta +File.separator+
                 id + "_inventory.txt"))) {
             
@@ -136,16 +139,53 @@ public class CriarNovoPersonagem {
      
      /*uma função final para juntar tudo e conseguir fazer um salvamento unico*/
      
-    public void saveALL() throws IOException {
-    salvarInformacoes(2, this.data, "date"); 
-    salvarInformacoes(3, this.position, "position");
-    salvarInformacoes(5, nome, "name");
-    salvarInformacoesInventory();
-    adicionarLinha(caminhoArquivo, nomeComId());
-    System.out.println(id);
+   public void saveALL() throws IOException {
+  
+        salvarInformacoes(2, this.data, "date");
+        salvarInformacoes(3, this.position, "position");
+        salvarInformacoes(5, nome, "name");
+        System.out.println("indo pro inventario");
+        salvarInformacoesInventory(inventory);
+
     JOptionPane.showMessageDialog(null, "Personagem Salvo Com Sucesso!");
-
 }
+   
+   
+   public void modificaperson(String conteudo, String sufixo){
+      String arquivo = FileUtils.caminhoPasta+File.separator+ GuardaDadosGameplay.id + "_"+sufixo;
+       System.out.println(arquivo);
+       
+       try {
+            // Abrir o arquivo em modo de escrita para sobrescrever as linhas
+            BufferedWriter writer = new BufferedWriter(new FileWriter(arquivo));
+            writer.write(conteudo);
 
-}   
+            writer.close();
+
+            System.out.println("Conteúdo substituído com sucesso.");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+   }
+   }
+       
+  public void modificaInventarioPerson(ArrayList<String> inventario){
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(caminhoPasta +File.separator+
+                GuardaDadosGameplay.id + "_inventory.txt"))) {
+            for (String item : inventory) {
+                writer.write(item);
+                writer.newLine(); 
+            }
+            System.out.println("Inventário salvo no arquivo.");
+        } catch (IOException e) {
+            System.err.println("Erro ao salvar inventário no arquivo: " + e.getMessage());
+        }
+      
+      
+  }
+  
+  
+      
+  }
+        
 

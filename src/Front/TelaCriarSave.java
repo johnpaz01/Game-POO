@@ -69,6 +69,11 @@ public class TelaCriarSave extends javax.swing.JFrame {
         Labelescolha.setBounds(270, 290, 250, 30);
 
         RecebeNome.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        RecebeNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RecebeNomeActionPerformed(evt);
+            }
+        });
         getContentPane().add(RecebeNome);
         RecebeNome.setBounds(280, 230, 240, 40);
 
@@ -143,10 +148,10 @@ public class TelaCriarSave extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void CriarpersonagemButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CriarpersonagemButtonActionPerformed
-      name = RecebeNome.getText();
+    
       if(verificaFinalnome(name)){
     try { 
-        CriarNovoPersonagem novoPersonagem = new CriarNovoPersonagem(name);
+        CriarNovoPersonagem novoPersonagem = new CriarNovoPersonagem(1);
         for (int i = 0; i < checkboxes.length; i++) {
             if (checkboxes[i].getState()) {
                 novoPersonagem.adicionarItemInicial(checkboxes[i].getLabel());
@@ -156,7 +161,9 @@ public class TelaCriarSave extends javax.swing.JFrame {
     } catch (IOException ex) {
         Logger.getLogger(TelaCriarSave.class.getName()).log(Level.SEVERE, null, ex);
         }
-      }        
+      }   
+      
+      
     }//GEN-LAST:event_CriarpersonagemButtonActionPerformed
 
     private void VoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VoltarActionPerformed
@@ -164,6 +171,10 @@ public class TelaCriarSave extends javax.swing.JFrame {
         tli.setVisible(true);
         dispose();
     }//GEN-LAST:event_VoltarActionPerformed
+
+    private void RecebeNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RecebeNomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_RecebeNomeActionPerformed
 
     
  private void initializeCheckboxListeners() {
@@ -208,6 +219,11 @@ public boolean verificaFinalnome(String name) {
 }
 
 
+
+public String RetornaNome(){
+    String name =RecebeNome.getText().toLowerCase();
+    return name;
+}
 
     public static void main(String args[]) {
  
